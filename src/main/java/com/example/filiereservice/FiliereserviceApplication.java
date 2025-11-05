@@ -11,7 +11,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 @OpenAPIDefinition(
         info = @Info(
                 title = "Filiere Service API",
-                version = "1.0.0",
+                version = "2.0.0",
                 description = "CRUD sur les filières (idFiliere, code, libelle)"
         ),
         servers = @Server(url = "http://localhost:8081/")
