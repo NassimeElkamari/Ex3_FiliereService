@@ -12,6 +12,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -41,6 +42,7 @@ public class ApiRestful {
                     @ApiResponse(responseCode = "400", description = "Requête invalide")
             }
     )
+    @PreAuthorize("hasAuthority('SCOPE_ADMIN')")
     @PostMapping
     public ResponseEntity<ResponseDtoFiliere> create(@org.springframework.web.bind.annotation.RequestBody RequestDtoFiliere dto) {
         return new ResponseEntity<>(service.save(dto), HttpStatus.CREATED);
@@ -55,6 +57,7 @@ public class ApiRestful {
                                     schema = @Schema(implementation = ResponseDtoFiliere.class)))
             }
     )
+    @PreAuthorize("hasAuthority('SCOPE_USER')")
     @GetMapping
     public List<ResponseDtoFiliere> all() {
         return service.findAll();
@@ -73,6 +76,7 @@ public class ApiRestful {
                     @ApiResponse(responseCode = "404", description = "Filière non trouvée")
             }
     )
+    @PreAuthorize("hasAuthority('SCOPE_USER')")
     @GetMapping("/{id}")
     public ResponseEntity<ResponseDtoFiliere> byId(@PathVariable Long id) {
         return ResponseEntity.ok(service.findById(id));
@@ -97,6 +101,7 @@ public class ApiRestful {
                     @ApiResponse(responseCode = "404", description = "Filière non trouvée")
             }
     )
+    @PreAuthorize("hasAuthority('SCOPE_ADMIN')")
     @PutMapping("/{id}")
     public ResponseEntity<ResponseDtoFiliere> update(
             @PathVariable Long id,
@@ -115,6 +120,7 @@ public class ApiRestful {
                     @ApiResponse(responseCode = "404", description = "Filière non trouvée")
             }
     )
+    @PreAuthorize("hasAuthority('SCOPE_ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         service.delete(id);

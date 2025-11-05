@@ -1,0 +1,17 @@
+{
+  "groups": [
+    {
+      "name": "rsa",
+      "type": "com.example.filiereservice.configuration.RsaKeys",
+      "sourceType": "com.example.filiereservice.configuration.RsaKeys"
+    }
+  ],
+  "properties": [
+    {
+      "name": "rsa.public-key",
+      "type": "java.security.interfaces.RSAPublicKey",
+      "sourceType": "com.example.filiereservice.configuration.RsaKeys"
+    }
+  ],
+  "hints": []
+}
